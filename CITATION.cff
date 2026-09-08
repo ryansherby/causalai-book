@@ -1,0 +1,18 @@
+cff-version: 1.2.0
+message: If you use CITK, please cite this software and the Columbia Causal AI Lab.
+title: "Causal Inference Toolkit (CITK)"
+abstract: A Python-native library for structural causal models, causal diagrams, adjustment criteria, counterfactual queries, and ctf-calculus.
+authors:
+  - family-names: Sherby
+    given-names: Ryan
+    email: ryan.sherby@columbia.edu
+    affiliation: Columbia Causal AI Lab, Columbia University
+  - name: Columbia Causal AI Lab
+    website: https://causalai.net/
+license: MIT
+repository-code: https://github.com/CausalAILab/causalai-book
+keywords:
+  - causal-inference
+  - structural-causal-models
+  - do-calculus
+  - counterfactuals

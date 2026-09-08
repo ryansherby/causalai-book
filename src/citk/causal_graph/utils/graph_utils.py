@@ -1,7 +1,7 @@
 import networkx as nx
 from typing import List, Dict, Tuple
 
-from src.sympy_classes import Variable, variables
+from citk.sympy_classes import Variable, variables
 
 
 

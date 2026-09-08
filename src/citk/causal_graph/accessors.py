@@ -1,12 +1,12 @@
 from abc import ABC, abstractmethod
 from typing import List, Set, Union
 
-from src.sympy_classes.variable import Variable
+from citk.sympy_classes.variable import Variable
 import sympy as sp
 import networkx as nx
 
 
-from src.return_classes import SymbolContainer
+from citk.return_classes import SymbolContainer
 
 
 

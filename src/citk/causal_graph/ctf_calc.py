@@ -1,10 +1,10 @@
 from abc import ABC, abstractmethod
 from typing import Dict, List, Set, Union
 
-from src.sympy_classes import Variable, Pr
+from citk.sympy_classes import Variable, Pr
 
-from src.return_classes import SymbolContainer
-from src.sympy_classes.summation import Summation
+from citk.return_classes import SymbolContainer
+from citk.sympy_classes.summation import Summation
 import sympy as sp
 
 

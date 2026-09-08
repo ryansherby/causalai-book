@@ -2,14 +2,14 @@ from typing import Dict, Optional, Set, Union
 import uuid
 
 
-from src.return_classes.symbol_container import SymbolContainer
-from src.sympy_classes.variable import Variable
+from citk.return_classes.symbol_container import SymbolContainer
+from citk.sympy_classes.variable import Variable
 from sympy import Symbol, Expr
 import sympy as sp
 
 from IPython.display import Latex
 
-from src.global_utils import format_set, build_prob_exp
+from citk.global_utils import format_set, build_prob_exp
 
 
 
