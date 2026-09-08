@@ -7,11 +7,11 @@ import networkx as nx
 
 from typing import List, Optional, Set, Dict, Tuple, Union
 
-from src.causal_graph.dsep import DSeparation
-from src.causal_graph.accessors import Accessors
-from src.return_classes import SymbolContainer
+from citk.causal_graph.dsep import DSeparation
+from citk.causal_graph.accessors import Accessors
+from citk.return_classes import SymbolContainer
 
-import src.causal_graph.utils as utils
+import citk.causal_graph.utils as utils
 
 from IPython.display import Latex
 

@@ -1,18 +1,23 @@
 [build-system]
-requires = ["hatchling>=1.24", "hatch-vcs>=0.4"]   # PEP 517 backend + VCS-based versioning
+requires = ["hatchling>=1.24", "hatch-vcs>=0.4"]
 build-backend = "hatchling.build"
 
 ######################
 #  Project metadata  #
 ######################
 [project]
-name            = "citk"               # pip install citk
-dynamic         = ["version"]          # pulled from your git tag via hatch-vcs
+name            = "citk"
+dynamic         = ["version"]
 description     = "Causal Inference Toolkit — A Python Native Library for Building Causally Intelligent Systems"
 readme          = "README.md"
 license         = {text = "MIT"}
-authors         = [{name = "Ryan Sherby", email = "ryan.sherby@columbia.edu"}]
-maintainers     = [{name = "Ryan Sherby", email = "ryan.sherby@columbia.edu"}]
+authors         = [
+  {name = "Ryan Sherby", email = "ryan.sherby@columbia.edu"},
+  {name = "Columbia Causal AI Lab"},
+]
+maintainers     = [
+  {name = "Ryan Sherby", email = "ryan.sherby@columbia.edu"},
+]
 requires-python = ">=3.9"
 
 keywords = [
@@ -25,52 +30,93 @@ keywords = [
   "causal-analysis",
 ]
 
-# Core runtime dependencies
+classifiers = [
+  "Development Status :: 3 - Alpha",
+  "Intended Audience :: Science/Research",
+  "License :: OSI Approved :: MIT License",
+  "Programming Language :: Python :: 3",
+  "Programming Language :: Python :: 3.9",
+  "Programming Language :: Python :: 3.10",
+  "Programming Language :: Python :: 3.11",
+  "Programming Language :: Python :: 3.12",
+  "Topic :: Scientific/Engineering :: Artificial Intelligence",
+  "Topic :: Scientific/Engineering :: Mathematics",
+]
+
 dependencies = [
   "sympy>=1.13",
   "networkx>=3.4.2",
   "pandas>=2.2",
   "numpy>=1.26",
-  "graphviz>=0.20.3"
+  "graphviz>=0.20.3",
+  "ipython>=8.0",
 ]
 
 ##########################
 # Optional run-time deps #
 ##########################
 [project.optional-dependencies]
-viz    = []
-torch  = []
-dev    = []     # easy umbrella install
-docs   = []
-test   = []
-quality = [
+test = [
+  "pytest>=8.0",
 ]
+dev = [
+  "pytest>=8.0",
+  "build>=1.2",
+  "twine>=5.0",
+  "hatch>=1.12",
+]
+docs = []
+viz = []
+torch = []
 
-
+[project.scripts]
+citk-test = "citk.__tests__.run:main"
 
 #############
 # Project URLs
 #############
 [project.urls]
 Homepage      = "https://github.com/CausalAILab/causalai-book/tree/main"
-Documentation = ""
+Documentation = "https://github.com/CausalAILab/causalai-book/blob/main/README.md"
 Issues        = "https://github.com/CausalAILab/causalai-book/issues"
-Changelog     = ""
 
 #######################
 # Hatch build settings
 #######################
 [tool.hatch.version]
-source = "vcs"                         # use git tag e.g. v0.3.2
+source = "vcs"
 
-[tool.hatch.build]
-# put wheels / sdists in the usual ./dist folder (default)
-include = [
-  "src/citk/**",
-  "LICENSE",
-  "README.md",
-]
+[tool.hatch.version.raw-options]
+fallback_version = "0.1.0"
+local_scheme = "no-local-version"
 
 [tool.hatch.build.targets.sdist]
-# include pyproject & docs for source dist
-# include = ["/docs", "/tests"]
+include = [
+  "/src/citk",
+  "/LICENSE",
+  "/README.md",
+  "/CITATION.cff",
+]
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/citk"]
+
+[tool.hatch.envs.default]
+features = ["test"]
+
+[tool.hatch.envs.default.scripts]
+test = "citk-test {args}"
+pytest = "pytest {args:src/citk/__tests__}"
+
+[tool.hatch.envs.test]
+features = ["test"]
+
+[tool.hatch.envs.test.scripts]
+run = "citk-test {args}"
+
+[tool.pytest.ini_options]
+testpaths = ["src/citk/__tests__"]
+python_files = ["chapter_*_tests.py", "test_*.py"]
+python_functions = ["test_*"]
+pythonpath = ["src"]
+addopts = "-q"

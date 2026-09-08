@@ -7,20 +7,20 @@ import networkx as nx
 from graphviz import Source
 
 
-from src.return_classes.symbol_container import SymbolContainer
+from citk.return_classes.symbol_container import SymbolContainer
 
-from src.causal_graph.display import Display
-from src.causal_graph.dsep import DSeparation
-from src.causal_graph.adjustments import Adjustments
-from src.causal_graph.ctf_calc import DoCalc
-from src.causal_graph.accessors import Accessors
-from src.causal_graph.ctf_network_methods import CtfNetworkMethods
+from citk.causal_graph.display import Display
+from citk.causal_graph.dsep import DSeparation
+from citk.causal_graph.adjustments import Adjustments
+from citk.causal_graph.ctf_calc import DoCalc
+from citk.causal_graph.accessors import Accessors
+from citk.causal_graph.ctf_network_methods import CtfNetworkMethods
 
-import src.causal_graph.utils as utils
+import citk.causal_graph.utils as utils
 
 from IPython.display import display
 
-from src.sympy_classes.variable import Variable
+from citk.sympy_classes.variable import Variable
 
 
 class CausalGraph(DSeparation, Adjustments, DoCalc, Display, Accessors, CtfNetworkMethods):
@@ -335,7 +335,7 @@ class CausalGraph(DSeparation, Adjustments, DoCalc, Display, Accessors, CtfNetwo
         
     
 
-    def do(self, x:Union[Variable, Set[Variable], Dict[Variable]]):
+    def do(self, x:Union[Variable, Set[Variable], Dict[Variable, Union[int, Variable, None]]]):
         """
         Apply a do‑intervention by removing incoming edges to X.
 

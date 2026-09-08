@@ -9,13 +9,13 @@ import pandas as pd
 import sympy as sp
 from IPython.display import Latex
 
-from src.sympy_classes.pr import Pr
-from src.return_classes import SymbolContainer
+from citk.sympy_classes.pr import Pr
+from citk.return_classes import SymbolContainer
 
-from src import CausalGraph
+from citk.causal_graph import CausalGraph
 
-from src.sympy_classes.summation import Summation
-from src.sympy_classes.variable import Variable
+from citk.sympy_classes.summation import Summation
+from citk.sympy_classes.variable import Variable
 
 
 

@@ -3,7 +3,7 @@ from typing import Dict, List, Optional, Union, overload, Tuple
 import networkx as nx
 import sympy as sp
 
-from src.return_classes import SymbolContainer
+from citk.return_classes import SymbolContainer
 
 class Display:
     
