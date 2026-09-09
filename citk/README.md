@@ -4,7 +4,7 @@ A Python-native library for building causally intelligent systems: structural
 causal models, causal diagrams, adjustment criteria, counterfactual queries,
 and ctf-calculus.
 
-**Authors.** Ryan Sherby (`ryan.sherby@columbia.edu`) and the
+**Authors.** Ryan Sherby (`ryan.sherby@columbia.edu`), Kai-Zhan Lee, and the
 [Columbia Causal AI Lab](https://causalai.net/) (director: Elias Bareinboim).
 Copyright © 2025 Columbia Causal AI Lab. See [LICENSE](citk/LICENSE).
 
