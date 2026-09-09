@@ -11,6 +11,6 @@ A Python native causal inference toolkit.
 
 Jupyter Notebook companions for the Causal Artificial Intelligence book.
 
-## [fusion] (./fusion)
+## [fusion](./fusion)
 
 Source code for the fusion platform.
