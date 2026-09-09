@@ -1,1 +1,1 @@
-ln -s ./citk/README.md ./.github//README.md
+<include-fragment src="./citk/README.md"></include-fragment>
