@@ -92,7 +92,8 @@ class SymbolicSCM:
         ), pu
 
 
-
+        self.v = list(f)
+        self.u = list(pu)
         self.f = {k: sp.sympify(v) for k, v in f.items()}
         
         # Potential values taken on for the endogenous variables
@@ -250,7 +251,7 @@ class SymbolicSCM:
                 self._counterfactuals[k] for k in _symbols if k not in self.pu
             ):
                 record.update(scm._evaluate(u))
- 
+
             records.append(
                 {
                     k:
@@ -261,8 +262,6 @@ class SymbolicSCM:
                         for k, v in record.items()
                 }
             )
-
-            # Log-transformed multiplication of probabilities
             records[-1]["probability"] = math.exp(
                 sum(math.log(self.pu[k][u[k]]) for k in self.u)
             )
@@ -462,13 +461,11 @@ class SymbolicSCM:
         ------
         AssertionError
             If any of the keys in `x` are not present in the set of variables `self.v`.
-            If any of the counterfactual values in `x` do not belong to the domain of the key.
         """
 
         key = hash(tuple(sorted(x.items(), key=lambda t: (str(t[0]), t[1]))))
         if key in self._intervention_memo:
             return self._intervention_memo[key]
-
 
         assert all(k in self.v for k in x), x
 
