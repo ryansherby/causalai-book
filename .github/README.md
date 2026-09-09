@@ -1,1 +1,1 @@
-./citk/README.md
+ln -s ./citk/README.md ./.github//README.md
