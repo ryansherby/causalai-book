@@ -3,6 +3,9 @@
 
 
 
+import sympy as sp
+
+
 class Latexpr(sp.Expr):
     """
     A class to represent a LaTeX expression.
