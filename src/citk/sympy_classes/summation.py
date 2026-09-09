@@ -1,9 +1,6 @@
 from sympy import Symbol, oo, Expr, sympify, Tuple, S
 
 
-# TODO: Build summation wrapper class for Pr expressions
-
-
 
 class Summation(Expr):
     """
