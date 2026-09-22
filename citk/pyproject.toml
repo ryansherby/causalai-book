@@ -62,7 +62,7 @@ test = [
 dev = [
   "pytest>=8.0",
   "build>=1.2",
-  "twine>=5.0",
+  "twine>=7.0",
   "hatch>=1.12",
 ]
 docs = []
@@ -71,6 +71,8 @@ torch = []
 
 [project.scripts]
 citk-test = "src.__tests__.run:main"
+citk-build = "src.devtools:build"
+citk-publish = "src.devtools:publish"
 
 #############
 # Project URLs
@@ -93,6 +95,7 @@ local_scheme = "no-local-version"
 [tool.hatch.build.targets.sdist]
 include = [
   "/src",
+  "/assets",
   "/LICENSE",
   "/README.md",
   "/CITATION.cff",
@@ -100,6 +103,9 @@ include = [
 
 [tool.hatch.build.targets.wheel]
 packages = ["src"]
+
+[tool.hatch.build.targets.wheel.force-include]
+"assets" = "src/assets"
 
 [tool.hatch.envs.default]
 features = ["test"]
@@ -113,6 +119,13 @@ features = ["test"]
 
 [tool.hatch.envs.test.scripts]
 run = "citk-test {args}"
+
+[tool.hatch.envs.dev]
+features = ["dev"]
+
+[tool.hatch.envs.dev.scripts]
+build = "python -m build --outdir citk/dist citk"
+publish = "twine upload citk/dist/*"
 
 [tool.pytest.ini_options]
 testpaths = ["src/__tests__"]
