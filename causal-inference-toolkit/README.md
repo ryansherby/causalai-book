@@ -6,20 +6,20 @@ and ctf-calculus.
 
 **Authors.** Ryan Sherby (`ryan.sherby@columbia.edu`), Kai-Zhan Lee, and the
 [Columbia Causal AI Lab](https://causalai.net/) (director: Elias Bareinboim).
-Copyright © 2025 Columbia Causal AI Lab. See [LICENSE](citk/LICENSE).
+Copyright © 2025 Columbia Causal AI Lab. See [LICENSE](LICENSE).
 
 ## Installation
 
 Install from PyPI (when published):
 
 ```bash
-pip install citk
+pip install causal-inference-toolkit
 ```
 
 Install the current repository (recommended while the package is in development):
 
 ```bash
-pip install -e "./citk[test]"
+pip install -e "./causal-inference-toolkit[test]"
 ```
 
 To run the bundled chapter tests after installing:
@@ -37,8 +37,8 @@ Optional extras:
 
 | Extra | Install | Purpose |
 | ----- | ------- | ------- |
-| `test` | `pip install "citk[test]"` | pytest plus the `citk-test` runner |
-| `dev` | `pip install "citk[dev]"` | tests plus packaging tools (`build`, `twine`, `hatch`) |
+| `test` | `pip install "causal-inference-toolkit[test]"` | pytest plus the `citk-test` runner |
+| `dev` | `pip install "causal-inference-toolkit[dev]"` | tests plus packaging tools (`build`, `twine`, `hatch`) |
 
 ## Quick start
 
@@ -63,7 +63,7 @@ graph.is_d_separator(x, y, given={z})
 ```
 
 The worked examples in `chapter2.ipynb`, `chapter4.ipynb`, and `chapter5.ipynb`
-correspond to the tests in `src/citk/__tests__/chapter_n_tests.py`.
+correspond to the tests in `src/__tests__/chapter_n_tests.py`.
 
 ## Documentation
 
@@ -388,22 +388,22 @@ properties those components require.
 ### Writing additional tests
 
 Chapter notebooks are the source of truth for library behavior. Tests live next
-to the package in `src/citk/__tests__/` and are named after the notebook they
+to the package in `src/__tests__/` and are named after the notebook they
 encode:
 
 | Notebook | Test module |
 | -------- | ----------- |
-| `chapter2.ipynb` | `src/citk/__tests__/chapter_2_tests.py` |
-| `chapter4.ipynb` | `src/citk/__tests__/chapter_4_tests.py` |
-| `chapter5.ipynb` | `src/citk/__tests__/chapter_5_tests.py` |
+| `chapter2.ipynb` | `src/__tests__/chapter_2_tests.py` |
+| `chapter4.ipynb` | `src/__tests__/chapter_4_tests.py` |
+| `chapter5.ipynb` | `src/__tests__/chapter_5_tests.py` |
 
 When you add a `chapterN.ipynb` example that exercises library tools:
 
-1. Add `src/citk/__tests__/chapter_N_tests.py` (or extend the existing file).
+1. Add `src/__tests__/chapter_N_tests.py` (or extend the existing file).
 2. Name tests `test_<example_or_definition>_<behavior>` so they are collected
    by pytest (`python_functions = test_*`).
 3. Import the public API from `citk` (not from `src`). Shared set-comparison
-   helpers live in `src/citk/__tests__/helpers.py`.
+  helpers live in `src/__tests__/helpers.py`.
 4. Assert the same numeric values, independence facts, adjustment sets, and
    symbolic `Pr` / `Summation` strings that the notebook produces. Use
    `pytest.approx` for probabilities. Skip display-only cells such as
@@ -415,11 +415,11 @@ When you add a `chapterN.ipynb` example that exercises library tools:
 Install test dependencies and run the suite from the repository root:
 
 ```bash
-pip install -e "./citk[test]"
+pip install -e "./causal-inference-toolkit[test]"
 citk-test
 # or equivalently:
-pytest citk/src/__tests__
-python -m citk.src.__tests__
+pytest causal-inference-toolkit/src/__tests__
+python -m src.__tests__
 ```
 
 `citk-test` is the console script shipped with the package. Extra pytest flags
@@ -429,9 +429,9 @@ are forwarded, for example `citk-test -k chapter_2`. Hatch users can run
 Publish a release with the standard PyPI flow:
 
 ```bash
-pip install -e "./citk[dev]"
-python -m build
-twine upload citk/dist/*
+pip install -e "./causal-inference-toolkit[dev]"
+citk-build
+citk-publish
 ```
 
 ## Attribution

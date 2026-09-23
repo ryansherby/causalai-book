@@ -3,7 +3,7 @@ A companion for the Causal Artificial Intelligence book.
 
 # Directories
 
-## [citk](./citk)
+## [causal-inference-toolkit](./causal-inference-toolkit)
 
 A Python native causal inference toolkit.
 

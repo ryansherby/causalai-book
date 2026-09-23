@@ -9,8 +9,13 @@ from pathlib import Path
 
 
 def _repo_root() -> Path:
-    # src/devtools.py -> src -> citk -> workspace root
+    # src/devtools.py -> src -> <project-dir> -> workspace root
     return Path(__file__).resolve().parents[2]
+
+
+def _project_dir_name() -> str:
+    # The containing folder name (for example "causal-inference-toolkit").
+    return Path(__file__).resolve().parents[1].name
 
 
 def _run(command: list[str]) -> int:
@@ -22,30 +27,35 @@ def _run(command: list[str]) -> int:
 
 
 def build(argv: list[str] | None = None) -> int:
-    """Build wheel and sdist into citk/dist from repository root."""
+    """Build wheel and sdist into <project>/dist from repository root."""
     extra = list(sys.argv[1:] if argv is None else argv)
+    project_dir = _project_dir_name()
     command = [
         sys.executable,
         "-m",
         "build",
         "--outdir",
-        "citk/dist",
-        "citk",
+        f"{project_dir}/dist",
+        project_dir,
         *extra,
     ]
     return _run(command)
 
 
 def publish(argv: list[str] | None = None) -> int:
-    """Upload distribution files from citk/dist using twine."""
+    """Upload distribution files from <project>/dist using twine."""
     twine = shutil.which("twine")
     if twine is None:
-        raise SystemExit("twine is required to publish. Install with: pip install 'citk[dev]'")
+        raise SystemExit(
+            "twine is required to publish. Install with: pip install 'causal-inference-toolkit[dev]'"
+        )
 
-    dist_dir = _repo_root() / "citk" / "dist"
+    dist_dir = _repo_root() / _project_dir_name() / "dist"
     artifacts = sorted(str(path) for path in dist_dir.glob("*"))
     if not artifacts:
-        raise SystemExit("No distribution artifacts found in citk/dist. Run citk-build first.")
+        raise SystemExit(
+            f"No distribution artifacts found in {dist_dir}. Run citk-build first."
+        )
 
     extra = list(sys.argv[1:] if argv is None else argv)
     command = [twine, "upload", *artifacts, *extra]

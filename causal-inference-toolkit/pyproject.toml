@@ -6,7 +6,7 @@ build-backend = "hatchling.build"
 #  Project metadata  #
 ######################
 [project]
-name            = "citk"
+name            = "causal-inference-toolkit"
 dynamic         = ["version"]
 description     = "Causal Inference Toolkit — A Python Native Library for Building Causally Intelligent Systems"
 readme          = "README.md"
@@ -94,6 +94,7 @@ local_scheme = "no-local-version"
 
 [tool.hatch.build.targets.sdist]
 include = [
+  "/citk",
   "/src",
   "/assets",
   "/LICENSE",
@@ -102,7 +103,7 @@ include = [
 ]
 
 [tool.hatch.build.targets.wheel]
-packages = ["src"]
+packages = ["src", "citk"]
 
 [tool.hatch.build.targets.wheel.force-include]
 "assets" = "src/assets"
@@ -124,8 +125,8 @@ run = "citk-test {args}"
 features = ["dev"]
 
 [tool.hatch.envs.dev.scripts]
-build = "python -m build --outdir citk/dist citk"
-publish = "twine upload citk/dist/*"
+build = "python -m build --outdir causal-inference-toolkit/dist causal-inference-toolkit"
+publish = "twine upload causal-inference-toolkit/dist/*"
 
 [tool.pytest.ini_options]
 testpaths = ["src/__tests__"]
